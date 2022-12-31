@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >SMART App</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+
+<body style="background-color: rgb(7, 21, 38);">
+    <div style="margin-top: 50px;" class="ui container">
+        <a class="ui blue button" href="/">Home</a>
+        <h1 class="ui center aligned header" style="color: rgba(215, 196, 187, 1);">Customer APP</h1>
+
+        <form class="ui form" action="/customer/add" method="post">
+            <div class="field">
+                <label style="color: rgba(215, 196, 187, 1);">Customer Name</label>
+                <input type="text" name="name" placeholder="Enter customer_name..."><br>
+            </div>
+            <button class="ui blue button" type="submit">Add</button>
+        </form>
+
+        <hr>
+
+        {% for customer in customer_list %}
+        <div class="ui segment" style="background-color: rgb(239, 240, 222);">
+            <p class="ui big header">{{customer.id }} | {{ customer.name }} |       {{ customer.customer_id }}</p>
+            
+            <form class="ui form" action="/customer/update/{{ customer.id }}" method="put">
+                <div class="field">
+                    <label style="color: rgba(215, 196, 187, 1);">Customer Name</label>
+                    <input type="text" name="customer_name" placeholder="Enter customer_name..."><br>
+                </div>
+                <button class="ui blue button" type="submit">Update</button>
+            </form>
+            <a class="ui red button" href="/customer/delete/{{ customer.id }}">Delete</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

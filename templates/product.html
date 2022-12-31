@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >SMART App</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+
+<body style="background-color: rgb(7, 21, 38);">
+    <div style="margin-top: 50px;" class="ui container">
+        <a class="ui blue button" href="/">Home</a>
+        <h1 class="ui center aligned header" style="color: rgba(215, 196, 187, 1);">Product App</h1>
+
+        <form class="ui form" action="/product/add" method="post">
+            <div class="field">
+                <label style="color: rgba(215, 196, 187, 1);">Product</label>
+                <input type="text" name="product_name" placeholder="Enter product_name..."><br>
+                <input type="number" name="price" placeholder="Enter price..."><br>
+            </div>
+            <button class="ui blue button" type="submit">Add</button>
+        </form>
+
+        <hr>
+
+        {% for product in product_list %}
+        <div class="ui segment" style="background-color: rgb(239, 240, 222);">
+            <p class="ui big header">{{product.id }} | {{ product.product_name }} | {{ product.price }} |       {{ product.product_id }}</p>
+            
+            <form class="ui form" action="/product/update/{{ product.id }}" method="put">
+                <div class="field">
+                    <label style="color: rgba(215, 196, 187, 1);">Product Title</label>
+                    <input type="text" name="product_name" placeholder="Enter product_name..."><br>
+                    <input type="text" name="price" placeholder="Enter price..."><br>
+                </div>
+                <button class="ui blue button" type="submit">Update</button>
+            </form>
+            <a class="ui red button" href="/product/delete/{{ product.id }}">Delete</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

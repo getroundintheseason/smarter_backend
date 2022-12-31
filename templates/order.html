@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >SMART App</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+
+<body style="background-color: rgb(7, 21, 38);">
+    <div style="margin-top: 50px;" class="ui container">
+        <a class="ui blue button" href="/">Home</a>
+        <h1 class="ui center aligned header" style="color: rgba(215, 196, 187, 1);">To Do App</h1>
+
+        <form class="ui form" action="/order/add" method="post">
+            <div class="field">
+                <label style="color: rgba(215, 196, 187, 1);">Order Title</label>
+                <input type="number" name="customer_id" placeholder="Enter customer_id..."><br>
+                <input type="number" name="product_id" placeholder="Enter product_id..."><br>
+                <input type="number" name="amount" placeholder="Enter amount..."><br>
+            </div>
+            <button class="ui blue button" type="submit">Add</button>
+        </form>
+
+        <hr>
+
+        {% for order in order_list %}
+        <div class="ui segment" style="background-color: rgb(239, 240, 222);">
+            <p class="ui big header">{{order.id }} | customer_id = {{ order.customer_id }} | amount = {{ order.amount }} | product_id = {{ order.product_id }} |       {{ order.order_id }}</p>
+            
+            <form class="ui form" action="/order/update/{{ order.id }}" method="put">
+                <div class="field">
+                    <label style="color: rgba(215, 196, 187, 1);">Order Title</label>
+                    <input type="number" name="customer_id" placeholder="Enter customer_id..."><br>
+                    <input type="number" name="product_id" placeholder="Enter product_id..."><br>
+                    <input type="number" name="amount" placeholder="Enter amount..."><br>
+                </div>
+                <button class="ui blue button" type="submit">Update</button>
+            </form>
+            <a class="ui red button" href="/order/delete/{{ order.id }}">Delete</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
