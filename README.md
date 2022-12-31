@@ -1,14 +1,17 @@
 # API
 ### Order LIST
--  Http method GET<br>
+**Http method GET**
+
     /api/v1/orders
 
 ### GET Single Order    
--  Http method GET<br>
+**Http method GET**
+
     /api/v1/order/{order_id}
     
 ### UPDATE Single Order  
--  Http method POST<br>
+**Http method POST**
+
     /api/v1/order/{order_id}
 
 # RUN
